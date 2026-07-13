@@ -130,19 +130,24 @@ class MainActivity : AppCompatActivity() {
             }
 
         }
-        fun onOperatorClick(op: String) {
-            if (currentnumber.isEmpty() && previousnumber.isEmpty()) return
-
-            if (previousnumber.isNotEmpty() && currentnumber.isNotEmpty()) {
-                val num1 = previousnumber.toDouble()
-                val num2 = currentnumber.toDouble()
-                val result = when (operator) {
-                    "+" -> num1 + num2
-                    "-" -> num1 - num2
-                    "*" -> num1 * num2
-                    "/" -> if (num2 != 0.0) num1 / num2 else 0.0
-                    else -> num2
+    fun onOperatorClick(op:String){
+        if (currentnumber.isEmpty()&& previousnumber.isEmpty()) {
+            return
+        }
+        if (currentnumber.isNotEmpty()&&previousnumber.isNotEmpty()){
+            val num1=currentnumber.toDouble()
+            val num2= previousnumber.toDouble()
+            val result=when(operator){
+                "+"->num1+num2
+                "-"->num1-num2
+                "*"-> num1-num2
+                "*"->num1*num2
+                "/"->if (num2 != 0.0) num1 / num2 else {
+                    resultdisply.setText("Error")
+                    return
                 }
+                else -> num2
+            }
                 previousnumber = formatResult(result)
             } else {
                 previousnumber = currentnumber
